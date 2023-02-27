@@ -82,8 +82,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// JSON -> Object
-		String json3 = readString("data.json");
-		System.out.println(json3);
+		String json3 = readString("");
+		//String json3 = readString("data.json");
 
 		List<Employee> list3 = jsonToList(json3);
 
