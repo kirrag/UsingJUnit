@@ -5,6 +5,7 @@ import java.io.FileReader;
 //import java.io.FileWriter;
 //import java.io.File;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -82,10 +83,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		// JSON -> Object
-		String json3 = readString("");
-		//String json3 = readString("data.json");
-
+		//String json3 = readString("");
+		String json3 = readString("data.json");
+		System.out.println(json3);
 		List<Employee> list3 = jsonToList(json3);
+		System.out.println(list3.getClass());
 
 		for (Employee e : list3) {
 			System.out.println(e);

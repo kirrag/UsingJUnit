@@ -1,10 +1,7 @@
 package ru.netology;
 
-import java.io.*;
-//import org.junit.jupiter.junit-jupiter-engine;
 import org.junit.jupiter.api.*;
-//import java.util.List;
-//import java.util.ArrayList;
+import java.util.List;
 
 public class MainTest {
 	@Test
@@ -14,60 +11,34 @@ public class MainTest {
 		final String expected = "[  {    \"id\": 1,    \"firstName\": \"John\",    \"lastName\": \"Smith\",    \"country\": \"USA\",    \"age\": 25  },  {    \"id\": 2,    \"firstName\": \"Inav\",    \"lastName\": \"Petrov\",    \"country\": \"RU\",    \"age\": 23  }]";
 	
 		// when:
-		Main newMain = new Main();
+		final Main newMain = new Main();
 		final String result = newMain.readString(argument);
 
 		// then:
 		Assertions.assertEquals(expected, result);
 	}
-	@Test
-	public void testReadString_emptyString_originalString() {
-		// given:
-		final String argument = "";
-		// when:
-		Main newMain = new Main();
-		// then:
-		Assertions.assertThrows(FileNotFoundException.class, () -> {
-			newMain.readString(argument);
-		});
-		//Assertions.assertThrows(IllegalStateException.class, () -> {
-		//	newMain.readString("");
-		//});
-	}
-	/*
-	@Test
-	public void testConcat_validArgument_success() {
-		// given:
-		final String original = new String("Test string ");
-		final String argument = new String("valid");
-		final String expected = new String("Test string valid");
-	
-		// when:
-		final String result = original.concat(argument);    
-
-		// then:
-		Assertions.assertEquals(expected, result);
-	}	
-	
-	@Test
-	public void testConcat_emptyString_originalString() {
-		// given:
-		final String original = "Test string ";
-		final String argument = "";
-		// when:
-		final String result = original.concat(argument);
-		// then:
-		Assertions.assertEquals(original, result);
-	}
 
 	@Test
-	public void testConcat_nullArgument_throwsException() {
+	public void testReadString_nullArgument_throwsException() {
 		// given:
-		final String original = "Test string ";
+		final Main newMain = new Main();
+		final String argument = null;
 		// expect:
 		Assertions.assertThrows(NullPointerException.class, () -> {
-			original.concat(null);
+			newMain.readString(argument);
 		});
 	}
-	*/
+
+	@Test
+	public void testJsonToList_classType() {
+		// given
+		final String argument = "[  {    \"id\": 1,    \"firstName\": \"John\",    \"lastName\": \"Smith\",    \"country\": \"USA\",    \"age\": 25  },  {    \"id\": 2,    \"firstName\": \"Inav\",    \"lastName\": \"Petrov\",    \"country\": \"RU\",    \"age\": 23  }]";
+		final String expected = "class java.util.ArrayList";
+
+		final Main newMain = new Main();
+		final List<Employee> list = newMain.jsonToList(argument);
+		final String result = list.getClass().toString();
+		// then
+		Assertions.assertEquals(expected, result);
+	}
 }
